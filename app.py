@@ -8,15 +8,20 @@ from pdf2image import convert_from_path
 import img2pdf
 
 UPLOAD_FOLDER = 'static'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_IMAGE = {'png', 'jpg', 'jpeg'}
+ALLOWED_PDF = {'pdf'}
 
 app = Flask(__name__)
 app.secret_key = "ronsong0809"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-def allowed_file(filename):
+def allowed_image(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE
+
+def allowed_pdf(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_PDF
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -29,7 +34,7 @@ def index():
             flash('No selected file')
             return render_template('index.html')
 
-        if file1 and allowed_file(file1.filename):
+        if file1 and allowed_image(file1.filename):
             filename1 = "input.png"
             file1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
         
@@ -41,7 +46,7 @@ def index():
             flash('No selected file')
             return render_template('index.html')
 
-        if file2 and allowed_file(file2.filename):
+        if file2 and allowed_pdf(file2.filename):
             filename2 = "reference.pdf"
             file2.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
         return redirect("/result")

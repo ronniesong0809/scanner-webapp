@@ -14,6 +14,7 @@ ALLOWED_PDF = {'pdf'}
 app = Flask(__name__)
 app.secret_key = "ronsong0809"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
 def allowed_image(filename):
     return '.' in filename and \

@@ -1,0 +1,13 @@
+{% extends "layout.html" %} {% block content %}
+
+<div style="text-align: center;">
+	<div id="content">
+        <h3>Submit <a href="{{ url_for('index') }}">Another</a>!</h3><br><br>
+        <h5>Original Input and Reference Images</h3>
+        <img src="/static/input.png" style="width:30%;" alt="result">
+        <img src="/static/reference.png" style="width:30%;" alt="result"><br><br>
+		
+	</div>
+</div>
+
+{% endblock %}

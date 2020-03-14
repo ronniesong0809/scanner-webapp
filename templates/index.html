@@ -1,0 +1,23 @@
+{% extends "layout.html" %} {% block content %}
+
+<div style="max-width: 40%;margin: auto;text-align: left;">
+	<br><br>
+	<h2>Welcome to Ronnie's OpenCV Final Project</h2><br>
+	<h5>This is a simple web Document scanner that allow user to align image by upload an input image and reference pdf</h5><br><br>
+</div>
+<div style="text-align: center;">
+	<div id="content">		
+		<img src="/static/homepage.jpg" style="widows: 100px;" alt="homepage"><br><br>		
+
+		<form method=post enctype=multipart/form-data>
+			<label for="imageUpload1" class="btn btn-primary btn-outlined">Select input image</label>
+			<input type=file id="imageUpload1" style="display: none" name=file1>
+			<label for="imageUpload2" class="btn btn-danger btn-outlined">Select reference pdf</label>
+			<input type=file id="imageUpload2" style="display: none" name=file2>
+			<input type=submit value=Upload>
+		</form>
+		
+	</div>
+</div>
+
+{% endblock %}

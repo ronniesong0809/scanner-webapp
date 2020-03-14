@@ -26,47 +26,55 @@ def allowed_pdf(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        if 'file1' not in request.files or 'file2' not in request.files:
-            flash('No file part')
-            return '''
-                <div style="text-align: center;">
-                    <div id="content">
-                        <h3>No file part, please <a href="">try again</a>!</h3>
+    if os.path.exists("static/input.png") and os.path.exists("static/reference.png"):
+        os.remove("static/input.png")
+        os.remove("static/reference.png")
+        os.remove("static/reference.pdf")
+        os.remove("static/output_sift.png")
+        os.remove("static/output.pdf")
+        return render_template('index.html')
+    else:
+        if request.method == 'POST':
+            if 'file1' not in request.files or 'file2' not in request.files:
+                flash('No file part')
+                return '''
+                    <div style="text-align: center;">
+                        <div id="content">
+                            <h3>No file part, please <a href="">try again</a>!</h3>
+                        </div>
                     </div>
-                </div>
-                '''
+                    '''
 
-        file1 = request.files['file1']
-        file2 = request.files['file2']
+            file1 = request.files['file1']
+            file2 = request.files['file2']
 
-        if file1.filename == '' or file2.filename == '':
-            flash('No selected file')
-            return '''
-                <div style="text-align: center;">
-                    <div id="content">
-                        <h3>No selected file, please <a href="">try again</a>!</h3>
+            if file1.filename == '' or file2.filename == '':
+                flash('No selected file')
+                return '''
+                    <div style="text-align: center;">
+                        <div id="content">
+                            <h3>No selected file, please <a href="">try again</a>!</h3>
+                        </div>
                     </div>
-                </div>
-                '''
+                    '''
 
-        if not allowed_image(file1.filename) or not allowed_pdf(file2.filename):
-            flash('Incorrect file type')
-            return '''
-                <div style="text-align: center;">
-                    <div id="content">
-                        <h3>Incorrect file type, please <a href="">try again</a>!</h3>
+            if not allowed_image(file1.filename) or not allowed_pdf(file2.filename):
+                flash('Incorrect file type')
+                return '''
+                    <div style="text-align: center;">
+                        <div id="content">
+                            <h3>Incorrect file type, please <a href="">try again</a>!</h3>
+                        </div>
                     </div>
-                </div>
-                '''
+                    '''
 
-        if file1 and allowed_image(file1.filename) and file2 and allowed_pdf(file2.filename):
-            filename1 = "input.png"
-            file1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
-            filename2 = "reference.pdf"
-            file2.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
-        return redirect("/result")
-    return render_template('index.html')
+            if file1 and allowed_image(file1.filename) and file2 and allowed_pdf(file2.filename):
+                filename1 = "input.png"
+                file1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
+                filename2 = "reference.pdf"
+                file2.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
+            return redirect("/result")
+        return render_template('index.html')
 
 @app.route('/<filename>')
 def uploaded_file(filename):

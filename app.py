@@ -26,55 +26,42 @@ def allowed_pdf(filename):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        if 'file1' not in request.files:
+        if 'file1' not in request.files or 'file2' not in request.files:
             flash('No file part')
             return '''
-                    <div style="text-align: center;">
-                        <div id="content">
-                            <h3>No file part, please <a href="">try again</a>!</h3>
-                        </div>
+                <div style="text-align: center;">
+                    <div id="content">
+                        <h3>No file part, please <a href="">try again</a>!</h3>
                     </div>
-                    '''
+                </div>
+                '''
 
         file1 = request.files['file1']
-        if file1.filename == '':
+        file2 = request.files['file2']
+
+        if file1.filename == '' or file2.filename == '':
             flash('No selected file')
             return '''
-                    <div style="text-align: center;">
-                        <div id="content">
-                            <h3>No selected file, please <a href="">try again</a>!</h3>
-                        </div>
+                <div style="text-align: center;">
+                    <div id="content">
+                        <h3>No selected file, please <a href="">try again</a>!</h3>
                     </div>
-                    '''
+                </div>
+                '''
 
+        if not allowed_image(file1.filename) or not allowed_pdf(file2.filename):
+            flash('Incorrect file type')
+            return '''
+                <div style="text-align: center;">
+                    <div id="content">
+                        <h3>Incorrect file type, please <a href="">try again</a>!</h3>
+                    </div>
+                </div>
+                '''
 
-        if file1 and allowed_image(file1.filename):
+        if file1 and allowed_image(file1.filename) and file2 and allowed_pdf(file2.filename):
             filename1 = "input.png"
             file1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
-        
-        if 'file2' not in request.files:
-            flash('No file part')
-            return '''
-                    <div style="text-align: center;">
-                        <div id="content">
-                            <h3>No file part, please <a href="">try again</a>!</h3>
-                        </div>
-                    </div>
-                    '''
-
-        file2 = request.files['file2']
-        if file2.filename == '':
-            flash('No selected file')
-            return '''
-                    <div style="text-align: center;">
-                        <div id="content">
-                            <h3>No selected file, please <a href="">try again</a>!</h3>
-                        </div>
-                    </div>
-                    '''
-
-
-        if file2 and allowed_pdf(file2.filename):
             filename2 = "reference.pdf"
             file2.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
         return redirect("/result")

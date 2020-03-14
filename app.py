@@ -28,11 +28,25 @@ def index():
     if request.method == 'POST':
         if 'file1' not in request.files:
             flash('No file part')
-            return render_template('index.html')
+            return '''
+                    <div style="text-align: center;">
+                        <div id="content">
+                            <h3>No file part, please <a href="">try again</a>!</h3>
+                        </div>
+                    </div>
+                    '''
+
         file1 = request.files['file1']
         if file1.filename == '':
             flash('No selected file')
-            return render_template('index.html')
+            return '''
+                    <div style="text-align: center;">
+                        <div id="content">
+                            <h3>No selected file, please <a href="">try again</a>!</h3>
+                        </div>
+                    </div>
+                    '''
+
 
         if file1 and allowed_image(file1.filename):
             filename1 = "input.png"
@@ -40,11 +54,25 @@ def index():
         
         if 'file2' not in request.files:
             flash('No file part')
-            return render_template('index.html')
+            return '''
+                    <div style="text-align: center;">
+                        <div id="content">
+                            <h3>No file part, please <a href="">try again</a>!</h3>
+                        </div>
+                    </div>
+                    '''
+
         file2 = request.files['file2']
         if file2.filename == '':
             flash('No selected file')
-            return render_template('index.html')
+            return '''
+                    <div style="text-align: center;">
+                        <div id="content">
+                            <h3>No selected file, please <a href="">try again</a>!</h3>
+                        </div>
+                    </div>
+                    '''
+
 
         if file2 and allowed_pdf(file2.filename):
             filename2 = "reference.pdf"

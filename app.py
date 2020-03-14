@@ -32,6 +32,7 @@ def index():
         os.remove("static/reference.pdf")
         os.remove("static/output_sift.png")
         os.remove("static/output.pdf")
+        os.remove("static/matches_sift.png")
         return render_template('index.html')
     else:
         if request.method == 'POST':
@@ -106,7 +107,7 @@ def align_sift_homo(img_1, img_2):
     h, w, _ = img_2.shape
     image = np.zeros((h, w))
     image = cv2.drawMatchesKnn(img_1, kp_1, img_2, kp_2, good, None, flags=2)
-    cv2.imwrite("static/matches_sift.jpg", image)
+    cv2.imwrite("static/matches_sift.png", image)
 
     points1 = np.zeros((len(matches), 2), dtype=np.float32)
     points2 = np.zeros((len(matches), 2), dtype=np.float32)

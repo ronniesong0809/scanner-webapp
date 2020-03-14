@@ -1,23 +1,26 @@
 {% extends "layout.html" %} {% block content %}
 
-<div style="max-width: 40%;margin: auto;text-align: left;">
-	<br><br>
-	<h2>Welcome to Ronnie's OpenCV Final Project</h2><br>
-	<h5>This is a simple web Document scanner that allow user to align image by upload an input image and reference pdf</h5><br><br>
-</div>
-<div style="text-align: center;">
-	<div id="content">		
-		<img src="/static/homepage.jpg" style="widows: 100px;" alt="homepage"><br><br>		
+<div class="container mt-5">
+    <br><br>
+    <img src="/static/homepage.jpg" style="widows: 100px;" alt="homepage"><br>
 
-		<form method=post enctype=multipart/form-data>
-			<label for="imageUpload1" class="btn btn-primary btn-outlined">Select input image</label>
-			<input type=file id="imageUpload1" style="display: none" name=file1>
-			<label for="imageUpload2" class="btn btn-danger btn-outlined">Select reference pdf</label>
-			<input type=file id="imageUpload2" style="display: none" name=file2>
-			<input type=submit value=Upload>
-		</form>
-		
-	</div>
-</div>
+    <h1 class="display-4">Welcome to Ronnie's OpenCV Final Project</h1><br>
+    <p class="lead">This is a simple web Document scanner that allow user to align image by upload an input image and a reference pdf.</p>
+    <hr class="my-4">
 
+    <form method=post enctype=multipart/form-data>
+        <label for="imageUpload1" class="btn btn-lg btn-outline-primary"><i class="fas fa-file-image"></i> Select input image</label>
+        <input type=file id="imageUpload1" style="display: none" name=file1 accept="image/png, image/jpeg">
+
+        <label for="imageUpload2" class="btn btn-lg btn-outline-danger"><i class="fas fa-file-pdf"></i> Select reference pdf</label>
+        <input type=file id="imageUpload2" style="display: none" name=file2 accept="application/pdf">
+
+        <label for="submit" class="btn btn-lg btn-outline-success"><i class="fas fa-file-upload"></i> Submit</i></label>
+        <input type=submit id="submit" style="display: none" value=Upload>
+    </form>
+    <hr class="my-4">
+    <button class="btn btn-lg btn-outline-info" onclick="window.open('/static/test.zip')"><i class="fas fa-archive"></i> Test Set</button>
+    <a class="btn btn-lg btn-outline-dark" href="https://ronniesong0809.github.io/opencv-scanner" role="button"><i class="fab fa-github"></i> Learn more</a> 
+    <a class="btn btn-lg btn-outline-warning" href="https://github.com/ronniesong0809/opencv-scanner/issues/new" role="button"><i class="fas fa-bug"></i> Submit a bug</a>
+</div>
 {% endblock %}

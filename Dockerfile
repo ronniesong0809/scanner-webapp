@@ -1,8 +1,10 @@
-FROM continuumio/anaconda
-LABEL maintainer="ronniesong0809@gmail.com"
-EXPOSE 5000
+FROM ubuntu:18.04
+MAINTAINER Your Name "ronniesong0809@gmail.com"
+RUN apt-get update -y
+RUN apt-get install -y python-pip
+RUN apt-get install -y poppler-utils libsm6 libxext6
 COPY . /app
 WORKDIR /app
-RUN conda install -c conda-forge poppler
 RUN pip install -r requirements.txt
-CMD ["python", "app.py"]
+ENTRYPOINT ["python"]
+CMD ["app.py"]

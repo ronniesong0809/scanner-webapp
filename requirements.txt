@@ -1,4 +1,3 @@
-gunicorn
 opencv-python==3.4.2.17
 opencv-contrib-python==3.4.2.17
 numpy
@@ -6,3 +5,4 @@ pdf2image
 pathlib
 img2pdf
 flask
+gunicorn

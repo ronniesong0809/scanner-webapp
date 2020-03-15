@@ -7,6 +7,7 @@ import random
 from pdf2image import convert_from_path
 import img2pdf
 
+port = int(os.environ.get("PORT", 5000))
 UPLOAD_FOLDER = 'static'
 ALLOWED_IMAGE = {'png', 'jpg', 'jpeg'}
 ALLOWED_PDF = {'pdf'}
@@ -155,4 +156,4 @@ def result():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='localhost', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)

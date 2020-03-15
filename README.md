@@ -3,6 +3,10 @@ Copyright (c) 2020-2021 Ronnie Song
 
 This is a simple web Document scanner that allow user to align image by upload an input image and a reference pdf.
 
+<a href="https://github.com/ronniesong0809/scanner-webapp/raw/master/static/demo.png">
+  <img src="static/demo.png" alt="demo" width="80%">
+</a>
+
 ## Tech Stack and Tools
 Python, Flask, gunicorn, Bootstrap Framework, OpenCV, pdf2image, img2pdf
 
@@ -31,7 +35,7 @@ $ gcloud app deploy
 ```
 
 ## Reference
-- CS510 CV Project - Document Scanner
+- CS510 CV Project - [Document Scanner](https://github.com/ronniesong0809/scanner)
 
 ## License
 This program is licensed under the “MIT License”. Please see the file LICENSE in the source distribution of this software for license terms.

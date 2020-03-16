@@ -1,7 +1,13 @@
 # scanner-webapp
+[![Heroku](https://img.shields.io/badge/Heroku-deployed-blueviolet)](http://scanner-webapp.herokuapp.com/)
+<img alt="status" src="https://img.shields.io/website/https/scanner-webapp.herokuapp.com">
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ronniesong0809/scanner-webapp/blob/readme/LICENSE)
+
 Copyright (c) 2020-2021 Ronnie Song
 
-This is a simple web Document scanner that allow user to align image by upload an input image and a reference pdf.
+This is a simple web Document scanner that allows the user to align an input image by upload an input image and a reference pdf.
+
+[Demo](http://scanner-webapp.herokuapp.com/)
 
 <a href="https://github.com/ronniesong0809/scanner-webapp/raw/master/static/demo.png">
   <img src="static/demo.png" alt="demo" width="80%">

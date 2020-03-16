@@ -1,5 +1,5 @@
-opencv-python==3.4.2.17
-opencv-contrib-python==3.4.2.17
+opencv-python
+opencv-contrib-python
 numpy
 pdf2image
 img2pdf
